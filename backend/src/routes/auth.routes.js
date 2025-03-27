@@ -8,12 +8,13 @@ import {
   verifyAccount,
 } from "../controllers/auth.controller.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
+import { upload } from "../middlewares/multer.middleware.js";
 
 // router config
 const router = Router();
 
 // register user route
-router.route("/register").post(registerUser);
+router.route("/register").post(upload.single("profile"), registerUser);
 
 // verify account route
 router.route("/verify-account").post(verifyAccount);

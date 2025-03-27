@@ -34,10 +34,10 @@ const userSchema = new Schema(
       trim: true,
       minlength: [8, "Password must be at least 8 characters"],
     },
-    status: {
+    profile: {
       type: String,
-      enum: ["enable", "disable"],
-      default: "enable",
+      default:
+        "https://icons.veryicon.com/png/o/miscellaneous/two-color-icon-library/user-286.png",
     },
     isVerified: {
       type: Boolean,

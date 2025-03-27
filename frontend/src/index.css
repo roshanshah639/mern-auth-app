@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
 
 @import "tailwindcss";
+@plugin "daisyui";
 
 * {
   font-family: "Geist", sans-serif;

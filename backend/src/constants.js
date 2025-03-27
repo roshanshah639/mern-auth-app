@@ -1,4 +1,4 @@
-export const DB_NAME = "mern-stack-app";
+export const DB_NAME = "mern-chat-app";
 
 export const cookiesOptions = {
   httpOnly: true,

@@ -3,9 +3,13 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { Loader2 } from "lucide-react";
+import { useDispatch } from "react-redux";
+import { setCredentials } from "../redux/Slice/AuthSlice";
 
 const Login = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const [isLoading, setIsLoading] = useState(false);
 
   const [userData, setUserData] = useState({
@@ -42,13 +46,18 @@ const Login = () => {
         toast.success(response?.data?.message);
 
         // navigate to verify account
-        navigate("/");
+        navigate("/chat-now");
+
+        dispatch(setCredentials(response?.data?.data));
+
+        // set token in local storage
+        localStorage.setItem("token", response?.data?.data?.accessToken);
       } else {
         toast.error(response.data?.message);
       }
     } catch (error) {
       console.error(error);
-      toast.error(error.message);
+      toast.error(error.response.data?.message);
     } finally {
       setIsLoading(false);
     }

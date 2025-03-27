@@ -6,6 +6,7 @@ import UserModel from "../models/user.models.js";
 import { generateAccessAndRefreshTokens } from "../utils/generateJwtTokens.js";
 import { cookiesOptions } from "../constants.js";
 import { sendPasswordResetEmail } from "../middlewares/sendPasswordResetEmail.js";
+import { uploadOnCLoudinary } from "../utils/cloudinary.js";
 
 const registerUser = asyncHandler(async (req, res) => {
   // extract details from request body
@@ -16,6 +17,23 @@ const registerUser = asyncHandler(async (req, res) => {
     [name, email, phoneNumber, password].some((field) => field?.trim() === "")
   ) {
     throw new ApiError(400, "All fields are required");
+  }
+
+  // get profile image local path
+  let profileImageLocalPath;
+  if (req?.file) {
+    profileImageLocalPath = req?.file?.path;
+  }
+
+  // upload prfile image to cloudinary
+  let profile;
+  if (profileImageLocalPath) {
+    try {
+      profile = await uploadOnCLoudinary(profileImageLocalPath);
+    } catch (error) {
+      // log the error
+      console.error("Error uploading file to cloudinary", error);
+    }
   }
 
   // find user by email
@@ -60,7 +78,7 @@ const registerUser = asyncHandler(async (req, res) => {
       email,
       phoneNumber,
       password,
-      status: "enable",
+      profile: profile?.secure_url,
       isVerified: false,
       verificationCode: verificationCode,
       verificationCodeExpiry: Date.now() + 10 * 60 * 1000, // 10 minutes

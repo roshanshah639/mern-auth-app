@@ -7,7 +7,7 @@ const Home = () => {
       {/* Hero Section */}
       <section className="flex flex-col items-center justify-center text-center py-20 px-4 md:py-32">
         <h1 className="text-4xl md:text-6xl font-bold text-rose-900 mb-4 animate-fade-in">
-          Welcome to MERN Auth
+          Welcome to MERN Chat App
         </h1>
         <p className="text-lg md:text-xl text-rose-700 max-w-xl mb-8">
           Secure, fast, and modern authentication built with the MERN stack.
@@ -69,10 +69,10 @@ const Home = () => {
           authentication.
         </p>
         <Link
-          to="/register"
+          to="/chat-now"
           className="bg-rose-600 text-white px-8 py-2 rounded-full font-semibold text-lg hover:bg-rose-700 transition duration-300"
         >
-          Join Now
+          Chat Now
         </Link>
       </section>
 

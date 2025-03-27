@@ -6,6 +6,7 @@ import Register from "./pages/Register.jsx";
 import VerifyAccount from "./pages/VerifyAccount.jsx";
 import { Toaster } from "react-hot-toast";
 import PasswordReset from "./pages/PasswordReset.jsx";
+import Home1 from "./pages/Home1.jsx";
 
 const App = () => {
   return (
@@ -13,6 +14,8 @@ const App = () => {
       <Routes>
         {/* public routes */}
         <Route path="/" element={<Home />} />
+        <Route path="/chat-now" element={<Home1 />} />
+
         <Route path="/register" element={<Register />} />
         <Route path="/verify-account" element={<VerifyAccount />} />
         <Route path="/login" element={<Login />} />
